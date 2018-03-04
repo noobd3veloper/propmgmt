@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Property;
-use app\models\PropertySearch;
+use app\models\Tenant;
+use app\models\TenantSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use kartik\alert\Alert;
+
 /**
- * PropertyController implements the CRUD actions for Property model.
+ * TenantController implements the CRUD actions for Tenant model.
  */
-class PropertyController extends Controller
+class TenantController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class PropertyController extends Controller
     }
 
     /**
-     * Lists all Property models.
+     * Lists all Tenant models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PropertySearch();
+        $searchModel = new TenantSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class PropertyController extends Controller
     }
 
     /**
-     * Displays a single Property model.
+     * Displays a single Tenant model.
      * @param string $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,16 +58,16 @@ class PropertyController extends Controller
     }
 
     /**
-     * Creates a new Property model.
+     * Creates a new Tenant model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Property();
+        $model = new Tenant();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->propertyID]);
+            return $this->redirect(['view', 'id' => $model->tenantID]);
         }
 
         return $this->render('create', [
@@ -76,7 +76,7 @@ class PropertyController extends Controller
     }
 
     /**
-     * Updates an existing Property model.
+     * Updates an existing Tenant model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -87,10 +87,8 @@ class PropertyController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->propertyID]);
+            return $this->redirect(['view', 'id' => $model->tenantID]);
         }
-
-        Yii::$app->session->setFlash('success', 'Successfully Updated');
 
         return $this->render('update', [
             'model' => $model,
@@ -98,7 +96,7 @@ class PropertyController extends Controller
     }
 
     /**
-     * Deletes an existing Property model.
+     * Deletes an existing Tenant model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -107,22 +105,20 @@ class PropertyController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-        
-        Yii::$app->session->setFlash('success', 'Successfully Deleted');
-        
+
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Property model based on its primary key value.
+     * Finds the Tenant model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return Property the loaded model
+     * @return Tenant the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Property::findOne($id)) !== null) {
+        if (($model = Tenant::findOne($id)) !== null) {
             return $model;
         }
 
