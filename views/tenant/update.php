@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tenant */
 
-$this->title = 'Update Tenant: {nameAttribute}';
+$this->title = 'Update Tenant: ' .  $model->getFullName();;
 $this->params['breadcrumbs'][] = ['label' => 'Tenants', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->tenantID, 'url' => ['view', 'id' => $model->tenantID]];
+$this->params['breadcrumbs'][] = ['label' => $model->getFullName(), 'url' => ['view', 'id' => $model->tenantID]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="tenant-update">

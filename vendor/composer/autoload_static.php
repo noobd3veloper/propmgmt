@@ -19,12 +19,17 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
         'y' => 
         array (
             'yii\\swiftmailer\\' => 16,
+            'yii\\jui\\' => 8,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
             'yii\\composer\\' => 13,
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
+        ),
+        'r' => 
+        array (
+            'rmrevin\\yii\\fontawesome\\' => 24,
         ),
         'p' => 
         array (
@@ -33,16 +38,17 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
         'k' => 
         array (
             'kartik\\growl\\' => 13,
+            'kartik\\date\\' => 12,
             'kartik\\base\\' => 12,
             'kartik\\alert\\' => 13,
+        ),
+        'd' => 
+        array (
+            'dmstr\\' => 6,
         ),
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
-        ),
-        'Z' => 
-        array (
-            'Zelenin\\yii\\SemanticUI\\' => 23,
         ),
         'W' => 
         array (
@@ -80,6 +86,7 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
         ),
         'C' => 
         array (
+            'Composer\\Installers\\' => 20,
             'Codeception\\PHPUnit\\' => 20,
             'Codeception\\Extension\\' => 22,
             'Codeception\\' => 12,
@@ -90,6 +97,10 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
         'yii\\swiftmailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer',
+        ),
+        'yii\\jui\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-jui',
         ),
         'yii\\gii\\' => 
         array (
@@ -115,6 +126,10 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
         ),
+        'rmrevin\\yii\\fontawesome\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rmrevin/yii2-fontawesome',
+        ),
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
@@ -125,6 +140,10 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-growl',
         ),
+        'kartik\\date\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-datepicker',
+        ),
         'kartik\\base\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-krajee-base',
@@ -133,13 +152,13 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-alert',
         ),
+        'dmstr\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dmstr/yii2-adminlte-asset',
+        ),
         'cebe\\markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
-        ),
-        'Zelenin\\yii\\SemanticUI\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/zelenin/yii2-semantic-ui',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -205,6 +224,10 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
+        'Composer\\Installers\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
+        ),
         'Codeception\\PHPUnit\\' => 
         array (
             0 => __DIR__ . '/..' . '/codeception/phpunit-wrapper/src',
@@ -221,6 +244,13 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
     );
 
     public static $prefixesPsr0 = array (
+        'c' => 
+        array (
+            'cebe\\gravatar\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/cebe/yii2-gravatar',
+            ),
+        ),
         'P' => 
         array (
             'Prophecy\\' => 

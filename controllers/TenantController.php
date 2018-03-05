@@ -26,6 +26,16 @@ class TenantController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'only' => ['index','create','update','view'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ], 
         ];
     }
 
@@ -66,13 +76,21 @@ class TenantController extends Controller
     {
         $model = new Tenant();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->tenantID]);
-        }
+		if ($model->load(Yii::$app->request->post())) {
+			$model->createdBy = Yii::$app->user->getIdentity()->id;
+			$model->createdDate = time();
+			if($model->save()) {
+	            //return $this->redirect(['view', 'id' => $model->id]);
+				return $this->redirect(['index']);
+			} else {
+				print_r($model->errors);
+			}
+        } else {
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
     }
 
     /**
@@ -86,13 +104,21 @@ class TenantController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->tenantID]);
-        }
+        if ($model->load(Yii::$app->request->post())) {
+			$model->modifiedBy = Yii::$app->user->getIdentity()->id;
+			$model->modifiedDate = time();
+			if($model->save()) {
+	            //return $this->redirect(['view', 'id' => $model->id]);
+				return $this->redirect(['index']);
+			} else {
+				print_r($model->errors);
+			}
+        } else {
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
     }
 
     /**

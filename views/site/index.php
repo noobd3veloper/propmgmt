@@ -6,7 +6,6 @@ $this->title = 'Rent History Info';
 ?>
 
 <div class="site-index">
-<?php if(!Yii::$app->user->isGuest) : ?>
     <div class="jumbotron">
         <h1>Congratulations!</h1>
 
@@ -51,5 +50,4 @@ $this->title = 'Rent History Info';
         </div>
 
     </div>
-    <?php endif; ?>
 </div>

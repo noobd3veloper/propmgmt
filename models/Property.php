@@ -61,4 +61,20 @@ class Property extends \yii\db\ActiveRecord
     {
         return new PropertyQuery(get_called_class());
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreatedBy0()
+    {
+        return $this->hasOne(User::className(), ['userID' => 'createdBy']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getModifiedBy0()
+    {
+        return $this->hasOne(User::className(), ['userID' => 'modifiedBy']);
+    }
 }

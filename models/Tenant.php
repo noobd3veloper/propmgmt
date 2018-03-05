@@ -34,9 +34,9 @@ class Tenant extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tenantSurname', 'tenantGivenName', 'tenantBirthdate', 'tenantSSN', 'createdBy', 'createdDate'], 'required'],
-            [['tenantBirthdate', 'createdDate', 'modifiedDate'], 'safe'],
-            [['createdBy', 'modifiedBy'], 'integer'],
+            [['tenantSurname', 'tenantGivenName', 'tenantBirthdate', 'tenantSSN',], 'required'],
+            [['tenantBirthdate'], 'safe'],
+            [['createdBy', 'modifiedBy', 'createdDate', 'modifiedDate'], 'integer'],
             [['tenantSurname', 'tenantGivenName', 'tenantMiddleName'], 'string', 'max' => 255],
             [['tenantSSN'], 'string', 'max' => 11],
         ];
@@ -68,5 +68,38 @@ class Tenant extends \yii\db\ActiveRecord
     public static function find()
     {
         return new TenantQuery(get_called_class());
+    }
+
+    /**
+	 * @return Full name of the Tenant
+	 */
+	public function getFullName()
+	{
+        $fullname = $this->tenantGivenName; 
+        if ($this->tenantMiddleName != null){
+            if($this->tenantMiddleName != '') { 
+                $fullname .= ' '.$this->tenantMiddleName;    
+            } 
+        }
+		if($this->tenantSurname != '') { 
+			$fullname .= ' '.$this->tenantSurname;    
+		} 
+		return $fullname; 
+	}
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreatedBy0()
+    {
+        return $this->hasOne(User::className(), ['userID' => 'createdBy']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getModifiedBy0()
+    {
+        return $this->hasOne(User::className(), ['userID' => 'modifiedBy']);
     }
 }

@@ -26,18 +26,39 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'tenantID',
+            //'tenantID',
             'tenantSurname',
             'tenantGivenName',
             'tenantMiddleName',
-            'tenantBirthdate',
-            //'tenantSSN',
+            [
+                'attribute' => 'tenantBirthdate',
+                'value' => 'tenantBirthdate',
+                'filter' => \yii\jui\DatePicker::widget(['options' => ['class' => 'form-control'],'model'=>$searchModel,
+                    'attribute'=>'tenantBirthdate',
+                    'dateFormat' => 'yyyy-MM-dd',
+                    'clientOptions' => [
+                        'changeYear' => true,
+                        'changeMonth' => true
+                        ]
+                    ]),
+                
+                'format' => 'html',
+            ],
+            'tenantSSN',
             //'createdBy',
             //'createdDate',
             //'modifiedBy',
             //'modifiedDate',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+			    'class' => 'yii\grid\ActionColumn',
+			    'template' => '{view} {update} {delete}',
+			    'visibleButtons' => [
+			        'view' => true,
+			        'update' => true,
+			        'delete' => true,
+			    ]
+			],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

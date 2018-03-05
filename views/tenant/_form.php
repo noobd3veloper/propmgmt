@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tenant */
 /* @var $form yii\widgets\ActiveForm */
@@ -17,18 +17,22 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'tenantGivenName')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'tenantMiddleName')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'tenantBirthdate')->textInput() ?>
+    <label class="control-label" for="tenant-tenantbirthdate">Date of Birth</label>
+    <?= DatePicker::widget([
+        'id' => 'tenant-tenantbirthdate',
+        'name' => 'Tenant[tenantBirthdate]', 
+        'value' => $model->tenantBirthdate,
+        'type' => DatePicker::TYPE_INPUT,
+        'options' => ['placeholder' => 'Select Birthdate'],
+        'pluginOptions' => [
+            'autoclose'=>true,
+            'format' => 'yyyy-mm-dd'
+        ]
+    ]);?>
+    <!--<?= $form->field($model, 'tenantBirthdate')->textInput() ?>-->
 
     <?= $form->field($model, 'tenantSSN')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'createdBy')->textInput() ?>
-
-    <?= $form->field($model, 'createdDate')->textInput() ?>
-
-    <?= $form->field($model, 'modifiedBy')->textInput() ?>
-
-    <?= $form->field($model, 'modifiedDate')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

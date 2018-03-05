@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tenant */
 
-$this->title = $model->tenantID;
+$this->title = $model->getFullName();
 $this->params['breadcrumbs'][] = ['label' => 'Tenants', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,16 +28,28 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'tenantID',
+            //'tenantID',
             'tenantSurname',
             'tenantGivenName',
             'tenantMiddleName',
             'tenantBirthdate',
             'tenantSSN',
-            'createdBy',
-            'createdDate',
-            'modifiedBy',
-            'modifiedDate',
+            [
+            	'attribute' => 'createdBy',
+            	'value' => $model->createdBy0->getFullName()
+            ],
+            [
+            	'attribute' => 'createdDate',
+            	'value' => date('l \t\h\e jS \of F Y h:i:s A', $model->createdDate)
+            ],
+            [
+            	'attribute' => 'modifiedBy',
+            	'value' => (is_null($model->modifiedBy)) ? null : $model->modifiedBy0->getFullName()
+            ],
+                        [
+            	'attribute' => 'modifiedDate',
+            	'value' => (is_null($model->modifiedDate)) ? null : date('l \t\h\e jS \of F Y h:i:s A', $model->modifiedDate)
+            ],
         ],
     ]) ?>
 
