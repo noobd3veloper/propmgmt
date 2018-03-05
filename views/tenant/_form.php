@@ -17,18 +17,15 @@ use kartik\date\DatePicker;
     <?= $form->field($model, 'tenantGivenName')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'tenantMiddleName')->textInput(['maxlength' => true]) ?>
-    <label class="control-label" for="tenant-tenantbirthdate">Date of Birth</label>
-    <?= DatePicker::widget([
-        'id' => 'tenant-tenantbirthdate',
-        'name' => 'Tenant[tenantBirthdate]', 
-        'value' => $model->tenantBirthdate,
-        'type' => DatePicker::TYPE_INPUT,
-        'options' => ['placeholder' => 'Select Birthdate'],
-        'pluginOptions' => [
-            'autoclose'=>true,
-            'format' => 'yyyy-mm-dd'
-        ]
-    ]);?>
+    
+    <?= $form->field($model, 'tenantBirthdate')->widget(\yii\jui\DatePicker::classname(), ['options' => ['class' => 'form-control'],'model'=>$model,
+                    'attribute'=>'tenantBirthdate',
+                    'dateFormat' => 'yyyy-MM-dd',
+                    'clientOptions' => [
+                        'changeYear' => true,
+                        'changeMonth' => true
+                        ]
+                    ]) ?>
     <!--<?= $form->field($model, 'tenantBirthdate')->textInput() ?>-->
 
     <?= $form->field($model, 'tenantSSN')->textInput(['maxlength' => true]) ?>

@@ -54,8 +54,8 @@ class Tenant extends \yii\db\ActiveRecord
             'tenantMiddleName' => 'MiddleName',
             'tenantBirthdate' => 'Date of Birth',
             'tenantSSN' => 'Social Security Number',
-            'createdBy' => 'Ccreated By',
-            'createdDate' => 'Create Date',
+            'createdBy' => 'Created By',
+            'createdDate' => 'Created Date',
             'modifiedBy' => 'Modified By',
             'modifiedDate' => 'Modified Date',
         ];

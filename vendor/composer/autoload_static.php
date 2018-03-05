@@ -38,7 +38,6 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
         'k' => 
         array (
             'kartik\\growl\\' => 13,
-            'kartik\\date\\' => 12,
             'kartik\\base\\' => 12,
             'kartik\\alert\\' => 13,
         ),
@@ -139,10 +138,6 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
         'kartik\\growl\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-growl',
-        ),
-        'kartik\\date\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-datepicker',
         ),
         'kartik\\base\\' => 
         array (

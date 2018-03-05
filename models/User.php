@@ -35,9 +35,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'userPassword', 'userEmail', 'userGivenName', 'userSurname', 'createdBy', 'createdDate'], 'required'],
-            [['createdBy', 'createdDate'], 'integer'],
-            [['username', 'userPassword', 'userAuthKey', 'userAccessToken', 'userEmail', 'userGivenName', 'userSurname','userResetToken'], 'string', 'max' => 255],
+            [['username', 'userPassword', 'userEmail', 'userGivenName', 'userSurname', 'createdBy', 'createdDate', 'roleId'], 'required'],
+            [['createdBy', 'createdDate', 'duration'], 'integer'],
+            [['startDate'],'safe'],
+            [['username', 'userPassword', 'userAuthKey', 'userAccessToken', 'userEmail', 'userGivenName', 'userSurname','userResetToken', 'companyName'], 'string', 'max' => 255],
+            [['roleId'], 'exist', 'skipOnError' => true, 'targetClass' => Role::className(), 'targetAttribute' => ['roleId' => 'id']],
         ];
     }
 
@@ -56,9 +58,21 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'userGivenName' => 'Given Name',
             'userSurname' => 'Surname',
             'userResetToken' => 'Reset Token',
+            'companyName' => 'Company Name',
+            'duration' => 'Subscription',
+            'startDate' => 'Subscription Start Date',
+            'roleId' => 'Role',
             'createdBy' => 'Created By',
             'createdDate' => 'Created Date',
         ];
+    }
+
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getRole()
+    {
+        return $this->hasOne(Role::className(), ['id' => 'roleId']);
     }
 
     /**
