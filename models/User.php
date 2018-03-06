@@ -39,7 +39,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['createdBy', 'createdDate', 'duration'], 'integer'],
             [['startDate'],'safe'],
             [['username', 'userPassword', 'userAuthKey', 'userAccessToken', 'userEmail', 'userGivenName', 'userSurname','userResetToken', 'companyName'], 'string', 'max' => 255],
-            [['roleId'], 'exist', 'skipOnError' => true, 'targetClass' => Role::className(), 'targetAttribute' => ['roleId' => 'id']],
+            [['roleID'], 'exist', 'skipOnError' => true, 'targetClass' => Role::className(), 'targetAttribute' => ['roleId' => 'roleID']],
         ];
     }
 
@@ -61,18 +61,19 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'companyName' => 'Company Name',
             'duration' => 'Subscription',
             'startDate' => 'Subscription Start Date',
-            'roleId' => 'Role',
+            'roleID' => 'Role',
             'createdBy' => 'Created By',
             'createdDate' => 'Created Date',
         ];
     }
 
+    
     /**
     * @return \yii\db\ActiveQuery
     */
     public function getRole()
     {
-        return $this->hasOne(Role::className(), ['id' => 'roleId']);
+        return $this->hasOne(Role::className(), ['roleID' => 'roleID']);
     }
 
     /**

@@ -258,7 +258,11 @@ use app\models\User;
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <?= Html::a(
+                                        'Profile',
+                                        ['/user/view','id' => Yii::$app->user->getIdentity()->id],
+                                        ['class' => 'btn btn-default btn-flat']
+                                    ) ?>
                                 </div>
                                 <div class="pull-right">
                                     <?= Html::a(

@@ -42,6 +42,15 @@ use yii\helpers\Html;
                         ['label' => 'Tenant', 'icon' => ' fa-user', 'url' => ['/tenant'],],
                         ],
                     ],
+                    ['label' => 'Admin',  
+                     'icon' => 'share',
+                     'url' => '#', 
+                     'visible'=> (!Yii::$app->user->isGuest && Yii::$app->user->getIdentity()->roleID==1) ? true : false,
+                     'items' => [
+                            ['label' => 'User', 'icon' => ' fa-user', 'url' => ['/user'],],
+                            ['label' => 'Role', 'icon' => ' fa-user', 'url' => ['/role'],],
+                        ],
+                    ],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     [
                         'label' => 'Some tools',

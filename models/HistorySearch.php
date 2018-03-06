@@ -18,7 +18,7 @@ class HistorySearch extends History
     public function rules()
     {
         return [
-            [['historyID', 'tenantID', 'createdBy', 'createdDate', 'modifiedBy', 'modifedDate'], 'integer'],
+            [['historyID', 'tenantID', 'createdBy', 'createdDate', 'modifiedBy', 'modifiedDate'], 'integer'],
             [['historyStartDate', 'historyEndDate', 'historyStatus', 'historyDetail'], 'safe'],
         ];
     }
@@ -66,7 +66,7 @@ class HistorySearch extends History
             'createdBy' => $this->createdBy,
             'createdDate' => $this->createdDate,
             'modifiedBy' => $this->modifiedBy,
-            'modifedDate' => $this->modifedDate,
+            'modifiedDate' => $this->modifiedDate,
         ]);
 
         $query->andFilterWhere(['like', 'historyStatus', $this->historyStatus])

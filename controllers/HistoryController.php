@@ -28,11 +28,25 @@ class HistoryController extends Controller
             ],
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
-                'only' => ['index','create','update','view'],
+                'only' => ['index','create','update','view','delete'],
                 'rules' => [
                     [
+                        'actions' => ['view','create'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['@']
+                    ],
+                    [
+                        'actions' => ['update', 'delete'],
+                        
+                        'allow' => Yii::$app->user->getIdentity()->id ==  $this->findModel(Yii::$app->getRequest()->getQueryParam('id'))->createdBy0->id,
+                    ],
+                    [
+                        'actions' => ['index'],
+                        'allow' => Yii::$app->user->identity->roleID == 1,
+                    ],
+                    [
+                        'allow' => false,
+                        'roles' => ['?'],
                     ],
                 ],
             ], 
@@ -76,13 +90,25 @@ class HistoryController extends Controller
     {
         $model = new History();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->historyID]);
-        }
+        
+        
+        if ($model->load(Yii::$app->request->post())) {
+			$model->createdBy = Yii::$app->user->getIdentity()->id;
+			$model->createdDate = time();
+			if($model->save()) {
+	            //return $this->redirect(['view', 'id' => $model->id]);
+                //return $this->redirect(['index']);
+                Yii::$app->session->setFlash('success', 'Successfully Created');
+                return $this->redirect(['tenant/view', 'id' => $model->tenantID]);
+			} else {
+				print_r($model->errors);
+			}
+        } else {
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
     }
 
     /**
@@ -96,13 +122,24 @@ class HistoryController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->historyID]);
-        }
+        
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        if ($model->load(Yii::$app->request->post())) {
+			$model->modifiedBy = Yii::$app->user->getIdentity()->id;
+			$model->modifiedDate = time();
+			if($model->save()) {
+                //return $this->redirect(['view', 'id' => $model->id]);
+                Yii::$app->session->setFlash('success', 'Successfully Updated');
+                return $this->redirect(['tenant/view', 'id' => $model->tenantID]);
+			} else {
+				print_r($model->errors);
+			}
+        } else {
+
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
     }
 
     /**

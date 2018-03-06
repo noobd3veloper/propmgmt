@@ -5,10 +5,13 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\History */
 
-$this->title = 'Update History: {nameAttribute}';
-$this->params['breadcrumbs'][] = ['label' => 'Histories', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->historyID, 'url' => ['view', 'id' => $model->historyID]];
-$this->params['breadcrumbs'][] = 'Update';
+//$this->title = 'Update History: {nameAttribute}';
+$this->title = 'Update History:' . $model->tenant->getFullName();
+$this->params['breadcrumbs'][] = ['label' => 'Tenant', 'url' => ['tenant/view', 'id' => $model->tenantID]];
+
+//$this->params['breadcrumbs'][] = ['label' => 'Histories', 'url' => ['index']];
+//$this->params['breadcrumbs'][] = ['label' => $model->historyID, 'url' => ['view', 'id' => $model->historyID]];
+//$this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="history-update">
 

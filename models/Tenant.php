@@ -3,7 +3,8 @@
 namespace app\models;
 
 use Yii;
-
+use app\models\History;
+use yii\helpers\Html;
 /**
  * This is the model class for table "tenant".
  *
@@ -51,7 +52,7 @@ class Tenant extends \yii\db\ActiveRecord
             'tenantID' => 'ID',
             'tenantSurname' => 'Surname',
             'tenantGivenName' => 'Given Name',
-            'tenantMiddleName' => 'MiddleName',
+            'tenantMiddleName' => 'Middle Name',
             'tenantBirthdate' => 'Date of Birth',
             'tenantSSN' => 'Social Security Number',
             'createdBy' => 'Created By',
@@ -101,5 +102,36 @@ class Tenant extends \yii\db\ActiveRecord
     public function getModifiedBy0()
     {
         return $this->hasOne(User::className(), ['userID' => 'modifiedBy']);
+    }
+
+     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getHistory()
+    {
+        return $this->hasMany(History::className(), ['tenantID' => 'tenantID']);
+    }
+
+    public function getHistoryDetail()
+    {
+        $value = "";
+        foreach($this->history as $historyDetail) {
+             $class = $historyDetail->historyStatus == 'GOOD' ? 'success' : 'danger';
+             $value .= '<tr id="'. $historyDetail->historyID .'" class='.$class.'><td>'. $historyDetail->historyStartDate. '</td><td>' .  $historyDetail->historyEndDate .' </td> 
+                <td>' .  $historyDetail->historyStatus .' </td><td> ' . 
+                    Html::a(
+                        '<span class="glyphicon glyphicon-eye-open"/>',
+                        ['/history/view', 'id' =>$historyDetail->historyID ]
+                    )
+                    . 
+                    Html::a(
+                        '<span class="glyphicon glyphicon-pencil"/></a>',
+                        ['/history/update', 'id' =>$historyDetail->historyID ]
+                    )
+                    . '</td>
+                </tr>';
+         
+        }
+        return $value;
     }
 }

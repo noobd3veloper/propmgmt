@@ -28,13 +28,24 @@ class UserController extends Controller
             ],
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
-                'only' => ['index','create','update'],
+                'only' => ['index','create','update','view','delete'],
                 'rules' => [
                     // allow authenticated users
                     [
-                        'allow' => false,
-                        'roles' => ['3'],
+                        'actions' => ['index', 'create', 'update', 'delete'],
+                        'allow' => Yii::$app->user->identity->roleID == 1,
                     ],
+                    [
+                        'actions' => ['view'],
+                        'allow' => true,
+                        'roles'=>['@']
+                    ],
+                    // allow authenticated users
+                    [
+                        'allow' => false, // Do not have access
+                        'roles'=>['?'], // Guests '?'
+                    ],
+                    
                 ],
             ],
         ];

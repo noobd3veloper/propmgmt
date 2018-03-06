@@ -16,11 +16,12 @@ use Yii;
  * @property int $createdBy Created By
  * @property int $createdDate Created Date
  * @property int $modifiedBy Modified By
- * @property int $modifedDate Modified Date
+ * @property int $modifiedDate Modified Date
  *
  * @property Attachment[] $attachments
  * @property User $createdBy0
  * @property User $modifiedBy0
+ * @property Tenant $tenant
  */
 class History extends \yii\db\ActiveRecord
 {
@@ -38,12 +39,13 @@ class History extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tenantID', 'createdBy', 'createdDate'], 'required'],
-            [['tenantID', 'createdBy', 'createdDate', 'modifiedBy', 'modifedDate'], 'integer'],
+            [['tenantID'], 'required'],
+            [['tenantID', 'createdBy', 'createdDate', 'modifiedBy', 'modifiedDate'], 'integer'],
             [['historyStartDate', 'historyEndDate'], 'safe'],
             [['historyStatus', 'historyDetail'], 'string'],
             [['createdBy'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['createdBy' => 'userID']],
             [['modifiedBy'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['modifiedBy' => 'userID']],
+            [['tenantID'], 'exist', 'skipOnError' => true, 'targetClass' => Tenant::className(), 'targetAttribute' => ['tenantID' => 'tenantID']],
         ];
     }
 
@@ -62,7 +64,7 @@ class History extends \yii\db\ActiveRecord
             'createdBy' => 'Created By',
             'createdDate' => 'Created Date',
             'modifiedBy' => 'Modified By',
-            'modifedDate' => 'Modified Date',
+            'modifiedDate' => 'Modified Date',
         ];
     }
 
@@ -88,6 +90,14 @@ class History extends \yii\db\ActiveRecord
     public function getModifiedBy0()
     {
         return $this->hasOne(User::className(), ['userID' => 'modifiedBy']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTenant()
+    {
+        return $this->hasOne(Tenant::className(), ['tenantID' => 'tenantID']);
     }
 
     /**
