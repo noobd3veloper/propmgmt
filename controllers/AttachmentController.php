@@ -76,13 +76,21 @@ class AttachmentController extends Controller
     {
         $model = new Attachment();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->attachmentID]);
-        }
+        if ($model->load(Yii::$app->request->post())) {
+			$model->createdBy = Yii::$app->user->getIdentity()->id;
+			$model->createdDate = time();
+			if($model->save()) {
+	            //return $this->redirect(['view', 'id' => $model->id]);
+				return $this->redirect(['index']);
+			} else {
+				print_r($model->errors);
+			}
+        } else {
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
     }
 
     /**
@@ -96,13 +104,21 @@ class AttachmentController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->attachmentID]);
-        }
+        if ($model->load(Yii::$app->request->post())) {
+			$model->modifiedBy = Yii::$app->user->getIdentity()->id;
+			$model->modifiedDate = time();
+			if($model->save()) {
+	            //return $this->redirect(['view', 'id' => $model->id]);
+				return $this->redirect(['index']);
+			} else {
+				print_r($model->errors);
+			}
+        } else {
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
     }
 
     /**
@@ -133,5 +149,23 @@ class AttachmentController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function displayImages($id)
+    {
+        $sql = 'SELECT attachmentName
+                      ,attachmentFile 
+                      ,historyID
+                      ,attachmentID 
+                      ,createdBy
+                FROM attachment 
+                WHERE historyID = :id';
+        $connection = Yii::$app->getDb();
+        $list = $connection->createCommand($sql)->bindValue('id',$id)->queryAll(); 
+        $rs=array();
+        foreach($list as $item){
+            $result[]=$item;
+        }
+        return $result;
     }
 }

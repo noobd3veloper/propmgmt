@@ -121,6 +121,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 		} 
 		return $fullname; 
     } 
+
+    public function getFullNameWithCompany()
+	{
+		$fullname = $this->userGivenName; 
+		if($this->userSurname != '') { 
+			$fullname .= ' '.$this->userSurname;    
+		} 
+		return $fullname . ' of ' . $this->companyName; 
+    }
     
     public static function findByUsername($username)
     {

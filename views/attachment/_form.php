@@ -16,15 +16,18 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'attachmentName')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'attachmentFile')->textInput() ?>
+   
 
-    <?= $form->field($model, 'createdBy')->textInput() ?>
+    <?= $form->field($model, 'attachmentFile')->fileInput([ 'accept' => 'image/*','pluginOptions' => [
+           'previewFileType' => 'image',
+           'allowedFileExtensions' => ['jpg', 'gif', 'png', 'bmp','jpeg'],
+           'showUpload' => true,
+           'overwriteInitial' => true,
+       ]
+       ]) ?>
 
-    <?= $form->field($model, 'createdDate')->textInput() ?>
 
-    <?= $form->field($model, 'modifiedBy')->textInput() ?>
 
-    <?= $form->field($model, 'modifiedDate')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

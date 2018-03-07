@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Tenants', 'url' => ['index']];
             'tenantBirthdate',
             'tenantSSN',
             [
-            	'attribute' => '$model->historyID->',
+            	'attribute' => '$model->historyID',
                 'format' => 'html',
             	'label' => 'Rental History',
                 'value' => function($model) {
@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Tenants', 'url' => ['index']];
             ],
             [
             	'attribute' => 'createdBy',
-            	'value' => $model->createdBy0->getFullName()
+            	'value' => $model->createdBy0->getFullNameWithCompany()
             ],
             [
             	'attribute' => 'createdDate',
@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Tenants', 'url' => ['index']];
             ],
             [
             	'attribute' => 'modifiedBy',
-            	'value' => (is_null($model->modifiedBy)) ? null : $model->modifiedBy0->getFullName()
+            	'value' => (is_null($model->modifiedBy)) ? null : $model->modifiedBy0->getFullNameWithCompany()
             ],
                         [
             	'attribute' => 'modifiedDate',

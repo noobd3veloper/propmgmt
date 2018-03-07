@@ -5,3 +5,22 @@
 .glyphicon :hover {
     font-size: 20px;
 }
+
+img.custom-thumbnail{
+    display: inline-block;
+    max-width: 200px;
+    height: 200px;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.custon-modal-dialog {
+    width: ;
+    margin: 30px auto;
+}

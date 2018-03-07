@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use yii\bootstrap\Modal;
 /* @var $this yii\web\View */
 /* @var $model app\models\History */
 
@@ -26,7 +26,15 @@ $this->params['breadcrumbs'][] = ['label' => 'Tenant', 'url' => ['tenant/view', 
             ]) ?>
         <?php endif; ?>
     </p>
-
+    <?php
+        Modal::begin([
+                'header' => '<h4 id="filename"></h4>',
+                'id'     => 'model',
+                'size'   => 'model-lg',
+        ]);
+        echo "<div><img id='modelContent' src='' class='img-responsive'></div>";
+        Modal::end();    
+    ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -38,7 +46,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Tenant', 'url' => ['tenant/view', 
             'historyDetail:ntext',
             [
             	'attribute' => 'createdBy',
-            	'value' => $model->createdBy0->getFullName()
+            	'value' => $model->createdBy0->getFullNameWithCompany()
             ],
             [
             	'attribute' => 'createdDate',
@@ -46,11 +54,28 @@ $this->params['breadcrumbs'][] = ['label' => 'Tenant', 'url' => ['tenant/view', 
             ],
             [
             	'attribute' => 'modifiedBy',
-            	'value' => (is_null($model->modifiedBy)) ? null : $model->modifiedBy0->getFullName()
+            	'value' => (is_null($model->modifiedBy)) ? null : $model->modifiedBy0->getFullNameWithCompany()
             ],
                         [
             	'attribute' => 'modifiedDate',
             	'value' => (is_null($model->modifiedDate)) ? null : date('l \t\h\e jS \of F Y h:i:s A', $model->modifiedDate)
+            ],
+            [
+            	'attribute' => '$model->historyID',
+                'format' => 'raw',
+            	'label' => 'Attachments',
+                'value' => function($model) {
+                    return ($model->AttachmentDetail == null) ? 
+                      Html::a('<span class="glyphicon glyphicon-plus"/>',['/attachment/create', 'historyID' => $model->historyID ])
+                    : Html::a('<span class="glyphicon glyphicon-plus"/>',['/attachment/create', 'historyID' => $model->historyID ]) . '<table class="table table-bordered dataTable no-footer"> 
+                    <thead>
+                        <tr>
+                            <th>Filename</th><th>Images</th><th></th>
+                        </tr>
+                    </thead>
+                    <tbody>' . $model->AttachmentDetail . '</tbody></table>
+                    ';
+            	},
             ],
         ],
     ]) ?>

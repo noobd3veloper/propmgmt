@@ -36,10 +36,10 @@ class Attachment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['historyID', 'attachmentName', 'attachmentFile', 'createdBy', 'createdDate'], 'required'],
+            [['historyID', 'attachmentName', 'attachmentFile'], 'required'],
             [['historyID', 'createdBy', 'createdDate', 'modifiedBy', 'modifiedDate'], 'integer'],
-            [['attachmentFile'], 'string'],
             [['attachmentName'], 'string', 'max' => 255],
+            [['attachmentFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
             [['createdBy'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['createdBy' => 'userID']],
             [['historyID'], 'exist', 'skipOnError' => true, 'targetClass' => History::className(), 'targetAttribute' => ['historyID' => 'historyID']],
             [['modifiedBy'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['modifiedBy' => 'userID']],

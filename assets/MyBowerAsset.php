@@ -20,12 +20,8 @@ class MyBowerAsset extends AssetBundle
     public $sourcePath = '@bower';
 
     public $css = [
-        'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
-        
-        
     ];
     public $js = [
-        'eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',        
     ];
     public $depends = [
     ];

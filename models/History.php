@@ -3,7 +3,8 @@
 namespace app\models;
 
 use Yii;
-
+use app\controllers\AttachmentController;
+use yii\helpers\Html;
 /**
  * This is the model class for table "history".
  *
@@ -107,5 +108,46 @@ class History extends \yii\db\ActiveRecord
     public static function find()
     {
         return new HistoryQuery(get_called_class());
+    }
+
+    public function getAttachmentDetail()
+    {
+        $value = "";
+        // foreach($this->attachments as $attachmentDetail) {
+        //      //$class = $historyDetail->historyStatus == 'GOOD' ? 'success' : 'danger';
+        //      $value .= '<tr id="'. $attachmentDetail->historyID .'" class="">
+        //                     <td> <img src="data:image/jpeg;base64,\'.base64_encode('.$attachmentDetail->attachmentFile . ').\'" /> </td>
+        //                     <td>' .  $attachmentDetail->attachmentFile .' </td> 
+        //                 </tr>';
+         
+        // }
+//        AttachmentController::displayImages($this->historyID);
+        foreach(AttachmentController::displayImages($this->historyID) as $attachmentDetail) {
+            //$class = $historyDetail->historyStatus == 'GOOD' ? 'success' : 'danger';
+            $value .= '<tr id="'. $attachmentDetail['historyID'] .'" class="">
+                           <td>' . $attachmentDetail['attachmentName'] . '</td>
+                           <td> ' .  Html::img("data:image/jpeg;base64," . base64_encode($attachmentDetail['attachmentFile']), 
+                                                ["id"=>$attachmentDetail['attachmentID'], 
+                                                "class"=>"custom-thumbnail", 
+                                                "data-target"=>"#modal-default",
+                                                "data-toggle"=>"modal",
+                                                "name"=>$attachmentDetail['attachmentName'] ]) .
+                          '</td> 
+                           <td> '; 
+                            if (Yii::$app->user->getIdentity()->id == $attachmentDetail['createdBy']) {
+                                $value .= Html::a(
+                                    '<span class="glyphicon glyphicon-pencil"/></a>',
+                                    ['/attachment/update', 'id' =>$attachmentDetail['attachmentID'] ]
+                                );
+                                $value .= Html::a(
+                                    '<span class="glyphicon glyphicon-trash"/></a>',
+                                    ['/attachment/delete', 'id' =>$attachmentDetail['attachmentID'] ]
+                                );
+                            }
+            $value .='</td>
+                       </tr>';
+        
+       }
+        return $value;
     }
 }
