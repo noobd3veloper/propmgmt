@@ -6,10 +6,10 @@
     font-size: 20px;
 }
 
-img.custom-thumbnail{
+/* img.custom-thumbnail{
     display: inline-block;
-    max-width: 200px;
-    height: 200px;
+    width: 128px;
+    height: 128px;
     padding: 4px;
     line-height: 1.42857143;
     background-color: #fff;
@@ -18,9 +18,10 @@ img.custom-thumbnail{
     -webkit-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
-}
+} */
 
-.custon-modal-dialog {
-    width: ;
-    margin: 30px auto;
+ul.users-list li img {    
+     border-radius: 0%; 
+     max-width: 128px; 
+     height: 128px; 
 }

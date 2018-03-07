@@ -112,28 +112,37 @@ class History extends \yii\db\ActiveRecord
 
     public function getAttachmentDetail()
     {
-        $value = "";
-        // foreach($this->attachments as $attachmentDetail) {
-        //      //$class = $historyDetail->historyStatus == 'GOOD' ? 'success' : 'danger';
-        //      $value .= '<tr id="'. $attachmentDetail->historyID .'" class="">
-        //                     <td> <img src="data:image/jpeg;base64,\'.base64_encode('.$attachmentDetail->attachmentFile . ').\'" /> </td>
-        //                     <td>' .  $attachmentDetail->attachmentFile .' </td> 
-        //                 </tr>';
-         
-        // }
-//        AttachmentController::displayImages($this->historyID);
+        $value = '<ul class="users-list clearfix">';
         foreach(AttachmentController::displayImages($this->historyID) as $attachmentDetail) {
-            //$class = $historyDetail->historyStatus == 'GOOD' ? 'success' : 'danger';
-            $value .= '<tr id="'. $attachmentDetail['historyID'] .'" class="">
-                           <td>' . $attachmentDetail['attachmentName'] . '</td>
-                           <td> ' .  Html::img("data:image/jpeg;base64," . base64_encode($attachmentDetail['attachmentFile']), 
+            // $value .= '<tr id="'. $attachmentDetail['historyID'] .'" class="">
+            //                <td> ' .  Html::img("data:image/jpeg;base64," . base64_encode($attachmentDetail['attachmentFile']), 
+            //                                     ["id"=>$attachmentDetail['attachmentID'], 
+            //                                     "class"=>"custom-thumbnail", 
+            //                                     "data-target"=>"#modal-default",
+            //                                     "data-toggle"=>"modal",
+            //                                     "name"=>$attachmentDetail['attachmentName'] ]) .
+            //               '</td> 
+            //                <td> '; 
+            //                 if (Yii::$app->user->getIdentity()->id == $attachmentDetail['createdBy']) {
+            //                     $value .= Html::a(
+            //                         '<span class="glyphicon glyphicon-pencil"/></a>',
+            //                         ['/attachment/update', 'id' =>$attachmentDetail['attachmentID'] ]
+            //                     );
+            //                     $value .= Html::a(
+            //                         '<span class="glyphicon glyphicon-trash"/></a>',
+            //                         ['/attachment/delete', 'id' =>$attachmentDetail['attachmentID'] ]
+            //                     );
+            //                 }
+            // $value .='</td>
+            //            </tr>';
+
+            $value .= '<li id="'. $attachmentDetail['historyID'] .'" >'
+                            .  Html::img("data:image/jpeg;base64," . base64_encode($attachmentDetail['attachmentFile']), 
                                                 ["id"=>$attachmentDetail['attachmentID'], 
-                                                "class"=>"custom-thumbnail", 
                                                 "data-target"=>"#modal-default",
                                                 "data-toggle"=>"modal",
-                                                "name"=>$attachmentDetail['attachmentName'] ]) .
-                          '</td> 
-                           <td> '; 
+                                                "name"=>$attachmentDetail['attachmentName'] ])  .
+                          '<span class="users-list-date"> '; 
                             if (Yii::$app->user->getIdentity()->id == $attachmentDetail['createdBy']) {
                                 $value .= Html::a(
                                     '<span class="glyphicon glyphicon-pencil"/></a>',
@@ -144,10 +153,12 @@ class History extends \yii\db\ActiveRecord
                                     ['/attachment/delete', 'id' =>$attachmentDetail['attachmentID'] ]
                                 );
                             }
-            $value .='</td>
-                       </tr>';
+            $value .='</span>
+                      </li>';
+            
         
        }
+       $value .= '</ul>';
         return $value;
     }
 }

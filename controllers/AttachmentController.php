@@ -153,6 +153,7 @@ class AttachmentController extends Controller
 
     public function displayImages($id)
     {
+        $result = array();
         $sql = 'SELECT attachmentName
                       ,attachmentFile 
                       ,historyID
@@ -162,7 +163,6 @@ class AttachmentController extends Controller
                 WHERE historyID = :id';
         $connection = Yii::$app->getDb();
         $list = $connection->createCommand($sql)->bindValue('id',$id)->queryAll(); 
-        $rs=array();
         foreach($list as $item){
             $result[]=$item;
         }

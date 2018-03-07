@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\bootstrap\Modal;
+use yii\bootstrap\Collapse;
 /* @var $this yii\web\View */
 /* @var $model app\models\History */
 
@@ -64,18 +65,36 @@ $this->params['breadcrumbs'][] = ['label' => 'Tenant', 'url' => ['tenant/view', 
             	'attribute' => '$model->historyID',
                 'format' => 'raw',
             	'label' => 'Attachments',
-                'value' => function($model) {
-                    return ($model->AttachmentDetail == null) ? 
-                      Html::a('<span class="glyphicon glyphicon-plus"/>',['/attachment/create', 'historyID' => $model->historyID ])
-                    : Html::a('<span class="glyphicon glyphicon-plus"/>',['/attachment/create', 'historyID' => $model->historyID ]) . '<table class="table table-bordered dataTable no-footer"> 
-                    <thead>
-                        <tr>
-                            <th>Filename</th><th>Images</th><th></th>
-                        </tr>
-                    </thead>
-                    <tbody>' . $model->AttachmentDetail . '</tbody></table>
-                    ';
-            	},
+                // 'value' => function($model) {
+                //     return ($model->AttachmentDetail == null) ? 
+                //       Html::a('<span class="glyphicon glyphicon-plus"/>',['/attachment/create', 'historyID' => $model->historyID ])
+                //     : Html::a('<span class="glyphicon glyphicon-plus"/>',['/attachment/create', 'historyID' => $model->historyID ]) . '<table class="table table-bordered dataTable no-footer"> 
+                //     <thead>
+                //         <tr>
+                //             <th>Filename</th><th>Images</th><th></th>
+                //         </tr>
+                //     </thead>
+                //     <tbody>' . $model->AttachmentDetail . '</tbody></table>
+                //     ';
+                // },
+                'value' => function($model){
+                    return
+                    Collapse::widget([
+                        'options' => ['class'=>'box box-danger', 'data-widget'=>'collapse'],
+                        'encodeLabels' => false,
+                        'items' => [
+                            // equivalent to the above
+                            [
+                                'label' => '<div class="box-header with-border">
+                                <span class="label label-danger">Evidences</span>
+                              </div>',
+                                'content' =>$model->AttachmentDetail,
+                                // open its content by default
+                                'contentOptions' => ['class' => 'in', 'data-widget'=>'collapse']
+                            ]
+                        ]
+                    ]);
+                }
             ],
         ],
     ]) ?>
