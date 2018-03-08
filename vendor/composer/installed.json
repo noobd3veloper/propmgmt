@@ -1074,6 +1074,121 @@
         ]
     },
     {
+        "name": "imagine/imagine",
+        "version": "v0.7.1",
+        "version_normalized": "0.7.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/avalanche123/Imagine.git",
+            "reference": "a9a702a946073cbca166718f1b02a1e72d742daa"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/a9a702a946073cbca166718f1b02a1e72d742daa",
+            "reference": "a9a702a946073cbca166718f1b02a1e72d742daa",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2"
+        },
+        "require-dev": {
+            "sami/sami": "^3.3",
+            "symfony/phpunit-bridge": "^3.2"
+        },
+        "suggest": {
+            "ext-gd": "to use the GD implementation",
+            "ext-gmagick": "to use the Gmagick implementation",
+            "ext-imagick": "to use the Imagick implementation"
+        },
+        "time": "2017-05-16T10:31:22+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.7-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Imagine": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Bulat Shakirzyanov",
+                "email": "mallluhuct@gmail.com",
+                "homepage": "http://avalanche123.com"
+            }
+        ],
+        "description": "Image processing for PHP 5.3",
+        "homepage": "http://imagine.readthedocs.org/",
+        "keywords": [
+            "drawing",
+            "graphics",
+            "image manipulation",
+            "image processing"
+        ]
+    },
+    {
+        "name": "kartik-v/bootstrap-fileinput",
+        "version": "v4.4.7",
+        "version_normalized": "4.4.7.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
+            "reference": "aebea0804d955af913d3cd5922e6b01be66290c9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/aebea0804d955af913d3cd5922e6b01be66290c9",
+            "reference": "aebea0804d955af913d3cd5922e6b01be66290c9",
+            "shasum": ""
+        },
+        "time": "2018-01-22T17:05:07+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "4.4.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "kartik\\plugins\\fileinput\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Kartik Visweswaran",
+                "email": "kartikv2@gmail.com",
+                "homepage": "http://www.krajee.com/"
+            }
+        ],
+        "description": "An enhanced HTML 5 file input for Bootstrap 3.x with features for file preview for many file types, multiple selection, ajax uploads, and more.",
+        "homepage": "https://github.com/kartik-v/bootstrap-fileinput",
+        "keywords": [
+            "ajax",
+            "bootstrap",
+            "delete",
+            "file",
+            "image",
+            "input",
+            "jquery",
+            "multiple",
+            "preview",
+            "progress",
+            "upload"
+        ]
+    },
+    {
         "name": "kartik-v/yii2-krajee-base",
         "version": "v1.8.9",
         "version_normalized": "1.8.9.0",
@@ -1179,6 +1294,63 @@
             "jquery",
             "notification",
             "plugin",
+            "widget",
+            "yii2"
+        ]
+    },
+    {
+        "name": "kartik-v/yii2-widget-fileinput",
+        "version": "v1.0.6",
+        "version_normalized": "1.0.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kartik-v/yii2-widget-fileinput.git",
+            "reference": "d2c8dcde1aa69ac0c4a0e3b3cfc0d79b3cc2a550"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/kartik-v/yii2-widget-fileinput/zipball/d2c8dcde1aa69ac0c4a0e3b3cfc0d79b3cc2a550",
+            "reference": "d2c8dcde1aa69ac0c4a0e3b3cfc0d79b3cc2a550",
+            "shasum": ""
+        },
+        "require": {
+            "kartik-v/bootstrap-fileinput": "~4.4",
+            "kartik-v/yii2-krajee-base": "~1.7"
+        },
+        "time": "2017-05-25T20:12:30+00:00",
+        "type": "yii2-extension",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "kartik\\file\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Kartik Visweswaran",
+                "email": "kartikv2@gmail.com",
+                "homepage": "http://www.krajee.com/"
+            }
+        ],
+        "description": "An enhanced FileInput widget for Bootstrap 3.x with file preview, multiple selection, and more features (sub repo split from yii2-widgets)",
+        "homepage": "https://github.com/kartik-v/yii2-widget-fileinput",
+        "keywords": [
+            "extension",
+            "file",
+            "form",
+            "input",
+            "jquery",
+            "plugin",
+            "upload",
             "widget",
             "yii2"
         ]
@@ -2688,8 +2860,8 @@
     },
     {
         "name": "symfony/browser-kit",
-        "version": "v3.4.5",
-        "version_normalized": "3.4.5.0",
+        "version": "v3.4.6",
+        "version_normalized": "3.4.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/browser-kit.git",
@@ -2747,8 +2919,8 @@
     },
     {
         "name": "symfony/console",
-        "version": "v3.4.5",
-        "version_normalized": "3.4.5.0",
+        "version": "v3.4.6",
+        "version_normalized": "3.4.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/console.git",
@@ -2818,8 +2990,8 @@
     },
     {
         "name": "symfony/css-selector",
-        "version": "v3.4.5",
-        "version_normalized": "3.4.5.0",
+        "version": "v3.4.6",
+        "version_normalized": "3.4.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/css-selector.git",
@@ -2873,8 +3045,8 @@
     },
     {
         "name": "symfony/debug",
-        "version": "v3.4.5",
-        "version_normalized": "3.4.5.0",
+        "version": "v3.4.6",
+        "version_normalized": "3.4.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/debug.git",
@@ -2931,8 +3103,8 @@
     },
     {
         "name": "symfony/dom-crawler",
-        "version": "v3.4.5",
-        "version_normalized": "3.4.5.0",
+        "version": "v3.4.6",
+        "version_normalized": "3.4.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/dom-crawler.git",
@@ -2989,8 +3161,8 @@
     },
     {
         "name": "symfony/event-dispatcher",
-        "version": "v3.4.5",
-        "version_normalized": "3.4.5.0",
+        "version": "v3.4.6",
+        "version_normalized": "3.4.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/event-dispatcher.git",
@@ -3054,23 +3226,23 @@
     },
     {
         "name": "symfony/finder",
-        "version": "v3.4.5",
-        "version_normalized": "3.4.5.0",
+        "version": "v3.4.6",
+        "version_normalized": "3.4.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/finder.git",
-            "reference": "6a615613745cef820d807443f32076bb9f5d0a38"
+            "reference": "a479817ce0a9e4adfd7d39c6407c95d97c254625"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/finder/zipball/6a615613745cef820d807443f32076bb9f5d0a38",
-            "reference": "6a615613745cef820d807443f32076bb9f5d0a38",
+            "url": "https://api.github.com/repos/symfony/finder/zipball/a479817ce0a9e4adfd7d39c6407c95d97c254625",
+            "reference": "a479817ce0a9e4adfd7d39c6407c95d97c254625",
             "shasum": ""
         },
         "require": {
             "php": "^5.5.9|>=7.0.8"
         },
-        "time": "2018-02-11T17:15:12+00:00",
+        "time": "2018-03-05T18:28:11+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -3166,8 +3338,8 @@
     },
     {
         "name": "symfony/yaml",
-        "version": "v3.4.5",
-        "version_normalized": "3.4.5.0",
+        "version": "v3.4.6",
+        "version_normalized": "3.4.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/yaml.git",
@@ -3642,6 +3814,56 @@
         "keywords": [
             "code generator",
             "gii",
+            "yii2"
+        ]
+    },
+    {
+        "name": "yiisoft/yii2-imagine",
+        "version": "2.1.1",
+        "version_normalized": "2.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiisoft/yii2-imagine.git",
+            "reference": "a8a1a068862a86e3395e665bc86e63d5c9b60841"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-imagine/zipball/a8a1a068862a86e3395e665bc86e63d5c9b60841",
+            "reference": "a8a1a068862a86e3395e665bc86e63d5c9b60841",
+            "shasum": ""
+        },
+        "require": {
+            "imagine/imagine": "~0.6.0 | ~0.7.1",
+            "yiisoft/yii2": "~2.0.0"
+        },
+        "time": "2018-02-22T11:57:06+00:00",
+        "type": "yii2-extension",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "yii\\imagine\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Antonio Ramirez",
+                "email": "amigo.cobos@gmail.com"
+            }
+        ],
+        "description": "The Imagine integration for the Yii framework",
+        "keywords": [
+            "helper",
+            "image",
+            "imagine",
             "yii2"
         ]
     },

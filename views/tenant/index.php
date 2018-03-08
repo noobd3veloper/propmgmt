@@ -33,12 +33,13 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'tenantBirthdate',
                 'value' => 'tenantBirthdate',
-                'filter' => \yii\jui\DatePicker::widget(['options' => ['class' => 'form-control'],'model'=>$searchModel,
+                'filter' => \yii\jui\DatePicker::widget(['options' => ['class' => 'form-control', 'showAnim'=>'slide','showOtherMonths'=>true],'model'=>$searchModel,
                     'attribute'=>'tenantBirthdate',
                     'dateFormat' => 'yyyy-MM-dd',
                     'clientOptions' => [
                         'changeYear' => true,
-                        'changeMonth' => true
+                        'changeMonth' => true,
+                        'yearRange'=>'1901:*',
                         ]
                     ]),
                 

@@ -1,8 +1,14 @@
 <?php
 use yii\helpers\Html;
 use app\models\User;
+use kartik\alert\AlertBlock;
 /* @var $this \yii\web\View */
 /* @var $content string */
+echo AlertBlock::widget([
+    'useSessionFlash' => true,
+    'delay' => 500,
+    'type' => AlertBlock::TYPE_GROWL 
+]);
 ?>
 
 <header class="main-header">

@@ -35,11 +35,7 @@ class HistoryController extends Controller
                         'allow' => true,
                         'roles' => ['@']
                     ],
-                    [
-                        'actions' => ['update', 'delete'],
-                        
-                        'allow' => Yii::$app->user->getIdentity()->id ==  $this->findModel(Yii::$app->getRequest()->getQueryParam('id'))->createdBy0->id,
-                    ],
+                    
                     [
                         'actions' => ['index'],
                         'allow' => Yii::$app->user->identity->roleID == 1,

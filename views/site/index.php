@@ -3,7 +3,7 @@
 /* @var $this yii\web\View */
 
 $this->title = 'Rent History Info';
-var_dump(Yii::$app->user->getIdentity())
+//var_dump(Yii::$app->user->getIdentity())
 ?>
 
 <div class="site-index">

@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'yii\\swiftmailer\\' => array($vendorDir . '/yiisoft/yii2-swiftmailer'),
     'yii\\jui\\' => array($vendorDir . '/yiisoft/yii2-jui'),
+    'yii\\imagine\\' => array($vendorDir . '/yiisoft/yii2-imagine/src'),
     'yii\\gii\\' => array($vendorDir . '/yiisoft/yii2-gii'),
     'yii\\faker\\' => array($vendorDir . '/yiisoft/yii2-faker'),
     'yii\\debug\\' => array($vendorDir . '/yiisoft/yii2-debug'),
@@ -16,7 +17,9 @@ return array(
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'rmrevin\\yii\\fontawesome\\' => array($vendorDir . '/rmrevin/yii2-fontawesome'),
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
+    'kartik\\plugins\\fileinput\\' => array($vendorDir . '/kartik-v/bootstrap-fileinput'),
     'kartik\\growl\\' => array($vendorDir . '/kartik-v/yii2-widget-growl'),
+    'kartik\\file\\' => array($vendorDir . '/kartik-v/yii2-widget-fileinput'),
     'kartik\\base\\' => array($vendorDir . '/kartik-v/yii2-krajee-base'),
     'kartik\\alert\\' => array($vendorDir . '/kartik-v/yii2-widget-alert'),
     'dmstr\\' => array($vendorDir . '/dmstr/yii2-adminlte-asset'),

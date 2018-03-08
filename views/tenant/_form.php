@@ -23,7 +23,8 @@ use kartik\date\DatePicker;
                     'dateFormat' => 'yyyy-MM-dd',
                     'clientOptions' => [
                         'changeYear' => true,
-                        'changeMonth' => true
+                        'changeMonth' => true,
+                        'yearRange'=>'1901:*',
                         ]
                     ]) ?>
     <!--<?= $form->field($model, 'tenantBirthdate')->textInput() ?>-->

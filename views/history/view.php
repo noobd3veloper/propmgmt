@@ -4,6 +4,9 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\bootstrap\Modal;
 use yii\bootstrap\Collapse;
+use yii\widgets\ActiveForm;
+use kartik\file\FileInput;
+use app\models\Attachment;
 /* @var $this yii\web\View */
 /* @var $model app\models\History */
 
@@ -27,15 +30,77 @@ $this->params['breadcrumbs'][] = ['label' => 'Tenant', 'url' => ['tenant/view', 
             ]) ?>
         <?php endif; ?>
     </p>
-    <?php
+     <?php
         Modal::begin([
                 'header' => '<h4 id="filename"></h4>',
                 'id'     => 'model',
                 'size'   => 'model-lg',
+                'options' => ['class' => 'modal modal-default fade in '],
+                'footer' => Html::a('Update', ['attachment/update','id'=>''], ['class' => 'btn btn-primary', 'id'=>'']),
         ]);
         echo "<div><img id='modelContent' src='' class='img-responsive'></div>";
-        Modal::end();    
+        Modal::end();  
+        
+        // Modal::begin([
+        //     'header' =>  '<h4 class="modal-title">Add attachment</h4>',
+        //         'id'     => 'model',
+        //         'size'   => 'model-lg',
+        //         'options' => ['class' => 'modal modal-default fade in '],
+        // ]);
+        
+        // //echo '<div class="attachment-form">';
+        
+        // $form = ActiveForm::begin([
+        //         'options'=>['enctype'=>'multipart/form-data', 'id'=>'updateAttachment']
+        //         ]);
+        
+        // $attachmentModel = new Attachment();
+        // echo $form->field($attachmentModel, 'attachmentID')->textInput(['maxlength' => true, 'value'=>'99']);
+        // var_dump(Html::getAttributeValue($model, '[0]attachmentDetail[0]'));
+        // var_dump($attachmentModel->attachmentID);
+  
+
+        // ActiveForm::end();
+       // Modal::end(); 
+
     ?>
+
+
+
+    <?php
+        Modal::begin([
+            'header' =>  '<h4 class="modal-title">Add attachment</h4>',
+                'id'     => 'model1',
+                'size'   => 'model-lg',
+                'options' => ['class' => 'modal modal-default fade in '],
+        ]);
+        
+        echo '<div class="attachment-form">';
+        $attachmentModel = new Attachment();
+        $form = ActiveForm::begin([
+                'options'=>['enctype'=>'multipart/form-data'],
+                'action'=>['attachment/create']]);
+            
+     $attachmentModel->historyID = $model->historyID;
+     echo $form->field($attachmentModel, 'historyID')->hiddenInput()->label(false);
+  
+     echo $form->field($attachmentModel, 'attachmentName')->hiddenInput()->label(false);
+  
+  
+     echo $form->field($attachmentModel, 'attachmentFile')->widget(FileInput::classname(), [
+                'options' => ['accept' => 'image/*'],
+                 'pluginOptions'=>['allowedFileExtensions'=>['jpg','gif','png'],'showUpload' => true,],
+            ]);  
+  
+      echo "<div class='modal-footer'> " .
+              Html::submitButton('Save', ['class' => 'btn btn-success']) .     
+            "</div>";
+      echo '</div>';
+
+      ActiveForm::end();
+        Modal::end();    
+    ?> 
+        
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -61,6 +126,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Tenant', 'url' => ['tenant/view', 
             	'attribute' => 'modifiedDate',
             	'value' => (is_null($model->modifiedDate)) ? null : date('l \t\h\e jS \of F Y h:i:s A', $model->modifiedDate)
             ],
+            
             [
             	'attribute' => '$model->historyID',
                 'format' => 'raw',
@@ -78,7 +144,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Tenant', 'url' => ['tenant/view', 
                 //     ';
                 // },
                 'value' => function($model){
-                    return
+                    return Html::a('<span class="glyphicon glyphicon-plus"/>','#',['id'=>'addAttachment']) . 
                     Collapse::widget([
                         'options' => ['class'=>'box box-danger', 'data-widget'=>'collapse'],
                         'encodeLabels' => false,
@@ -87,7 +153,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Tenant', 'url' => ['tenant/view', 
                             [
                                 'label' => '<div class="box-header with-border">
                                 <span class="label label-danger">Evidences</span>
-                              </div>',
+                                </div>',
                                 'content' =>$model->AttachmentDetail,
                                 // open its content by default
                                 'contentOptions' => ['class' => 'in', 'data-widget'=>'collapse']

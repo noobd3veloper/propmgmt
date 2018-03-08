@@ -142,19 +142,7 @@ class History extends \yii\db\ActiveRecord
                                                 "data-target"=>"#modal-default",
                                                 "data-toggle"=>"modal",
                                                 "name"=>$attachmentDetail['attachmentName'] ])  .
-                          '<span class="users-list-date"> '; 
-                            if (Yii::$app->user->getIdentity()->id == $attachmentDetail['createdBy']) {
-                                $value .= Html::a(
-                                    '<span class="glyphicon glyphicon-pencil"/></a>',
-                                    ['/attachment/update', 'id' =>$attachmentDetail['attachmentID'] ]
-                                );
-                                $value .= Html::a(
-                                    '<span class="glyphicon glyphicon-trash"/></a>',
-                                    ['/attachment/delete', 'id' =>$attachmentDetail['attachmentID'] ]
-                                );
-                            }
-            $value .='</span>
-                      </li>';
+                      '</li>';
             
         
        }

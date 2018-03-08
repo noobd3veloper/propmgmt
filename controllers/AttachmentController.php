@@ -8,7 +8,11 @@ use app\models\AttachmentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\web\UploadedFile;
+use yii\imagine\Image;
+use Imagine\Gd;
+use Imagine\Image\Box;
+use Imagine\Image\BoxInterface;
 /**
  * AttachmentController implements the CRUD actions for Attachment model.
  */
@@ -78,10 +82,22 @@ class AttachmentController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
 			$model->createdBy = Yii::$app->user->getIdentity()->id;
-			$model->createdDate = time();
+            $model->createdDate = time();
+            $image = UploadedFile::getInstance($model, 'attachmentFile');
+            $image1 = Image::getImagine();
+            list($width, $height, $type, $attr) = getimagesize($image->tempName);
+            $newWidth = min(960, $width);
+            $newHeight = min(720, $height);
+            var_dump($width);
+            var_dump($height);
+            $newImage = Image::getImagine()->open($image->tempName)->thumbnail(new Box($newWidth, $newHeight));
+            var_dump($newImage);
+            $model->attachmentFile = $newImage;
+            $model->attachmentName = $image->name;
 			if($model->save()) {
-	            //return $this->redirect(['view', 'id' => $model->id]);
-				return $this->redirect(['index']);
+                //return $this->redirect(['view', 'id' => $model->id]);
+                Yii::$app->session->setFlash('success', 'Successfully Added');
+				return $this->redirect(['history/view', 'id'=>$model->historyID]);
 			} else {
 				print_r($model->errors);
 			}
@@ -106,10 +122,22 @@ class AttachmentController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
 			$model->modifiedBy = Yii::$app->user->getIdentity()->id;
-			$model->modifiedDate = time();
+            $model->modifiedDate = time();
+            $image = UploadedFile::getInstance($model, 'attachmentFile');
+            $image1 = Image::getImagine();
+            list($width, $height, $type, $attr) = getimagesize($image->tempName);
+            $newWidth = min(960, $width);
+            $newHeight = min(720, $height);
+            var_dump($width);
+            var_dump($height);
+            $newImage = Image::getImagine()->open($image->tempName)->thumbnail(new Box($newWidth, $newHeight));
+            var_dump($newImage);
+            $model->attachmentFile = $newImage;
+            $model->attachmentName = $image->name;
 			if($model->save()) {
-	            //return $this->redirect(['view', 'id' => $model->id]);
-				return $this->redirect(['index']);
+                //return $this->redirect(['view', 'id' => $model->id]);
+                Yii::$app->session->setFlash('success', 'Successfully Updated');
+				return $this->redirect(['history/view', 'id'=>$model->historyID]);
 			} else {
 				print_r($model->errors);
 			}

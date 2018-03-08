@@ -20,6 +20,7 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
         array (
             'yii\\swiftmailer\\' => 16,
             'yii\\jui\\' => 8,
+            'yii\\imagine\\' => 12,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
@@ -37,7 +38,9 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
         ),
         'k' => 
         array (
+            'kartik\\plugins\\fileinput\\' => 25,
             'kartik\\growl\\' => 13,
+            'kartik\\file\\' => 12,
             'kartik\\base\\' => 12,
             'kartik\\alert\\' => 13,
         ),
@@ -101,6 +104,10 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-jui',
         ),
+        'yii\\imagine\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-imagine/src',
+        ),
         'yii\\gii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-gii',
@@ -135,9 +142,17 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
+        'kartik\\plugins\\fileinput\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/bootstrap-fileinput',
+        ),
         'kartik\\growl\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-growl',
+        ),
+        'kartik\\file\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-fileinput',
         ),
         'kartik\\base\\' => 
         array (
@@ -251,6 +266,13 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
+            ),
+        ),
+        'I' => 
+        array (
+            'Imagine' => 
+            array (
+                0 => __DIR__ . '/..' . '/imagine/imagine/lib',
             ),
         ),
         'H' => 
