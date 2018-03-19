@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\History */
 
-//$this->title = 'Update History: {nameAttribute}';
+//$this->title = 'Update History';
 $this->title = 'Update History:' . $model->tenant->getFullName();
 $this->params['breadcrumbs'][] = ['label' => 'Tenant', 'url' => ['tenant/view', 'id' => $model->tenantID]];
 

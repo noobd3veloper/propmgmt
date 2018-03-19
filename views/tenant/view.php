@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Tenants', 'url' => ['index']];
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
+    <?php if (Yii::$app->user->getIdentity()->roleID == 1) : ?>
         <?= Html::a('Update', ['update', 'id' => $model->tenantID], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->tenantID], [
             'class' => 'btn btn-danger',
@@ -29,6 +30,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Tenants', 'url' => ['index']];
                 'method' => 'post',
             ],
         ]) ?>
+    <?php endif; ?>
     </p>
 
     <?= DetailView::widget([

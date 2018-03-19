@@ -44,12 +44,19 @@ class LoginForm extends Model
      */
     public function validatePassword($attribute, $params)
     {
+
         if (!$this->hasErrors()) {
             $user = $this->getUser();
+            $subscription = $user->validateSubscription($user->userID);
+            
+            if ($subscription[0]['runningdays']>$subscription[0]['duration'] && $subscription[0]['duration'] != 0){
+                $this->addError($attribute, 'Your subscription has expired.');
+            }
 
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, 'Incorrect username or password.');
             }
+
         }
     }
 

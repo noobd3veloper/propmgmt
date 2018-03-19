@@ -13,9 +13,9 @@ use kartik\file\FileInput;
     <?php $form = ActiveForm::begin([
           'options'=>['enctype'=>'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'historyID')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'historyID')->hiddenInput()->label(false) ?>
 
-    <?= $form->field($model, 'attachmentName')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'attachmentName')->hiddenInput()->label(false) ?>
         
     <?= $form->field($model, 'attachmentFile')->widget(FileInput::classname(), [
               'options' => ['accept' => 'image/*', 'multiple'=>false],
@@ -25,7 +25,7 @@ use kartik\file\FileInput;
                'initialPreview'=>
                "data:image/jpeg;base64," . base64_encode($model->attachmentFile),
                     'initialPreviewAsData'=>true,
-                    'overwriteInitial'=>false,
+                    'overwriteInitial'=>true,
                     'initialPreviewConfig' => [
                         ['caption' =>  $model->attachmentName, 'size' => '873727']
                     ],

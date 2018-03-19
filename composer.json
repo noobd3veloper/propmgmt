@@ -22,8 +22,10 @@
         "kartik-v/yii2-widget-alert": "*",
         "kartik-v/yii2-widget-growl": "*",
         "yiisoft/yii2-jui": "^2.0",
+        "kartik-v/yii2-password": "@dev",
         "kartik-v/yii2-widget-fileinput":"*",
-        "yiisoft/yii2-imagine": "*"
+        "yiisoft/yii2-imagine": "*",
+        "liyunfang/yii2-contextmenu": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

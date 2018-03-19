@@ -24,8 +24,8 @@ echo AlertBlock::widget([
         <div class="navbar-custom-menu">
 
             <ul class="nav navbar-nav">
-
-                <!-- Messages: style can be found in dropdown.less-->
+            <?php if(!Yii::$app->user->isGuest && Yii::$app->user->isGuest) : ?>
+                Messages: style can be found in dropdown.less
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
@@ -231,12 +231,13 @@ echo AlertBlock::widget([
                         </li>
                     </ul>
                 </li>
+                <?php endif;?>
                 <!-- User Account: style can be found in dropdown.less -->
                 <?php if(!Yii::$app->user->isGuest) : ?>
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                            <span class="hidden-xs"><?= User::findIdentity(Yii::$app->user->getIdentity())->getFullname()?></span>
+                            <span class="hidden-xs"><?= User::findIdentity(Yii::$app->user->getIdentity()->id)->getFullname()?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
@@ -245,12 +246,17 @@ echo AlertBlock::widget([
                                     alt="User Image"/>
 
                                 <p>
-                                    <?= User::findIdentity(Yii::$app->user->getIdentity())->getFullname()?>
-                                    <small>Member since Nov. 2012</small>
+                                   
+                                    <?= Html::a(
+                                      User::findIdentity(Yii::$app->user->getIdentity()->id)->getFullname(),
+                                        ['/user/view','id' => Yii::$app->user->getIdentity()->id]
+                                    ) ?>
+                                    
+                                    <small><?= date('l \t\h\e jS \of F Y ', User::findIdentity(Yii::$app->user->getIdentity()->id)->createdDate)?></small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
-                            <li class="user-body">
+                            <!-- <li class="user-body">
                                 <div class="col-xs-4 text-center">
                                     <a href="#">Followers</a>
                                 </div>
@@ -260,16 +266,17 @@ echo AlertBlock::widget([
                                 <div class="col-xs-4 text-center">
                                     <a href="#">Friends</a>
                                 </div>
-                            </li>
+                            </li> -->
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
                                 <?= Html::a(
-                                        'Profile',
-                                        ['/user/view','id' => Yii::$app->user->getIdentity()->id],
+                                        'Change Password',
+                                        ['/user/changepassword'],
                                         ['class' => 'btn btn-default btn-flat']
                                     ) ?>
                                 </div>
+                                
                                 <div class="pull-right">
                                     <?= Html::a(
                                         'Sign out',

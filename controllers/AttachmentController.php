@@ -32,11 +32,26 @@ class AttachmentController extends Controller
             ],
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
-                'only' => ['index','create','update','view'],
                 'rules' => [
                     [
+                        'actions' => ['index','create','view'],
                         'allow' => true,
                         'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update'],
+                        'matchCallback' => function ($rule, $action) {
+                            $model = $this->findModel(Yii::$app->request->get('id'));
+                            return Yii::$app->user->getIdentity()->id == $model->createdBy;
+                        }
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['delete'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->getIdentity()->roleID == 1;
+                        }
                     ],
                 ],
             ], 

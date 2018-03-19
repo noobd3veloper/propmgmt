@@ -35,11 +35,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'userPassword', 'userEmail', 'userGivenName', 'userSurname', 'createdBy', 'createdDate', 'roleId'], 'required'],
+            [['username', 'userEmail', 'userGivenName', 'userSurname',  'roleID', 'startdate'], 'required'],
+            [['username'], 'unique','message'=>'Username already exists'],
             [['createdBy', 'createdDate', 'duration'], 'integer'],
-            [['startDate'],'safe'],
+            [['startdate'],'safe'],
             [['username', 'userPassword', 'userAuthKey', 'userAccessToken', 'userEmail', 'userGivenName', 'userSurname','userResetToken', 'companyName'], 'string', 'max' => 255],
-            [['roleID'], 'exist', 'skipOnError' => true, 'targetClass' => Role::className(), 'targetAttribute' => ['roleId' => 'roleID']],
+            [['roleID'], 'exist', 'skipOnError' => true, 'targetClass' => Role::className(), 'targetAttribute' => ['roleID' => 'roleID']],
         ];
     }
 
@@ -59,8 +60,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'userSurname' => 'Surname',
             'userResetToken' => 'Reset Token',
             'companyName' => 'Company Name',
-            'duration' => 'Subscription',
-            'startDate' => 'Subscription Start Date',
+            'duration' => 'Subscription (Days : 0 for lifetime)',
+            'startdate' => 'Subscription Start Date',
             'roleID' => 'Role',
             'createdBy' => 'Created By',
             'createdDate' => 'Created Date',
@@ -122,6 +123,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 		return $fullname; 
     } 
 
+    public function getDaysLeft()
+	{
+		$date1=date_create( date("Y-m-d"));
+        $date2=date_create($this->startdate);
+        $diff=date_diff($date1,$date2);
+        return $diff;
+    } 
+
+   
+
     public function getFullNameWithCompany()
 	{
 		$fullname = $this->userGivenName; 
@@ -161,5 +172,21 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function setPassword($password)
     {
         $this->password_hash = $password;//Security::generatePasswordHash($password);
+    }
+
+    public function validateSubscription($id){
+        
+        $sql = 'SELECT DATEDIFF(\'2018-03-20\',startdate) runningdays
+                      ,duration
+                FROM user 
+                WHERE userID = :id';
+        $connection = Yii::$app->getDb();
+        $result = $connection->createCommand($sql)->bindValue('id',$id)->queryAll(); 
+        //var_dump($result);
+        return $result;
+    }
+    public function getCreatedBy0()
+    {
+        return $this->hasOne(User::className(), ['userID' => 'createdBy']);
     }
 }

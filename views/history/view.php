@@ -91,7 +91,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Tenant', 'url' => ['tenant/view', 
                 'options' => ['accept' => 'image/*'],
                  'pluginOptions'=>['allowedFileExtensions'=>['jpg','gif','png'],'showUpload' => true,],
             ]);  
-  
+
       echo "<div class='modal-footer'> " .
               Html::submitButton('Save', ['class' => 'btn btn-success']) .     
             "</div>";

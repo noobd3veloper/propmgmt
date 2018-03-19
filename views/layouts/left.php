@@ -51,33 +51,33 @@ use yii\helpers\Html;
                             ['label' => 'Role', 'icon' => ' fa-user', 'url' => ['/role'],],
                         ],
                     ],
-                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
-                    [
-                        'label' => 'Some tools',
-                        'icon' => 'share',
-                        'url' => '#',
-                        'items' => [
-                            ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
-                            ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
-                            [
-                                'label' => 'Level One',
-                                'icon' => 'circle-o',
-                                'url' => '#',
-                                'items' => [
-                                    ['label' => 'Level Two', 'icon' => 'circle-o', 'url' => '#',],
-                                    [
-                                        'label' => 'Level Two',
-                                        'icon' => 'circle-o',
-                                        'url' => '#',
-                                        'items' => [
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                        ],
-                                    ],
-                                ],
-                            ],
-                        ],
-                    ],
+                    //['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
+                    // [
+                    //     'label' => 'Some tools',
+                    //     'icon' => 'share',
+                    //     'url' => '#',
+                    //     'items' => [
+                    //         ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
+                    //         ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
+                    //         [
+                    //             'label' => 'Level One',
+                    //             'icon' => 'circle-o',
+                    //             'url' => '#',
+                    //             'items' => [
+                    //                 ['label' => 'Level Two', 'icon' => 'circle-o', 'url' => '#',],
+                    //                 [
+                    //                     'label' => 'Level Two',
+                    //                     'icon' => 'circle-o',
+                    //                     'url' => '#',
+                    //                     'items' => [
+                    //                         ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+                    //                         ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+                    //                     ],
+                    //                 ],
+                    //             ],
+                    //         ],
+                    //     ],
+                    // ],
                     ['label' => 'About', 'url' => ['/site/about']],
                     Yii::$app->user->isGuest ? (
                         ['label' => 'Login', 'icon' => 'fa fa-unlock-alt', 'url' => ['/site/login']]

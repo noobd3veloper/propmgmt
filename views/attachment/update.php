@@ -5,10 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Attachment */
 
-$this->title = 'Update Attachment: {nameAttribute}';
-$this->params['breadcrumbs'][] = ['label' => 'Attachments', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->attachmentID, 'url' => ['view', 'id' => $model->attachmentID]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Update Attachment';
+$this->title = 'Update Attachment:' . $model->attachmentName;
+$this->params['breadcrumbs'][] = ['label' => 'History', 'url' => ['history/view', 'id' => $model->history->historyID]];
 ?>
 <div class="attachment-update">
 

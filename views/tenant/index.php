@@ -3,12 +3,23 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TenantSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Tenants';
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->registerJs("
+    $('td').click(function (e) {
+        var id = $(this).closest('tr').data('id');
+        if(e.target == this)
+            location.href = '" . Url::to(['tenant/view']) . "?id=' + id;
+    });
+
+");
+
 ?>
 <div class="tenant-index">
 
@@ -23,8 +34,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'rowOptions'   => function ($model, $key, $index, $grid) {
+            return ['data-id' => $model->tenantID];
+        },
+    
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\SerialColumn',],
 
             //'tenantID',
             'tenantSurname',
@@ -56,8 +71,12 @@ $this->params['breadcrumbs'][] = $this->title;
 			    'template' => '{view} {update} {delete}',
 			    'visibleButtons' => [
 			        'view' => true,
-			        'update' => true,
-			        'delete' => true,
+			        'update' => function ($model, $key, $index) {
+                        return (Yii::$app->user->getIdentity()->id == $model->createdBy) ? true : false;
+                    },
+			        'delete' => function ($model, $key, $index) {
+			            return (Yii::$app->user->getIdentity()->roleID == 1) ? true : false;
+			         },
 			    ]
 			],
         ],

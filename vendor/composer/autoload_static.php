@@ -36,9 +36,15 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'l' => 
+        array (
+            'liyunfang\\contextmenu\\' => 22,
+        ),
         'k' => 
         array (
+            'kartik\\plugins\\strengthmeter\\' => 29,
             'kartik\\plugins\\fileinput\\' => 25,
+            'kartik\\password\\' => 16,
             'kartik\\growl\\' => 13,
             'kartik\\file\\' => 12,
             'kartik\\base\\' => 12,
@@ -142,9 +148,21 @@ class ComposerStaticInitc9edea7c33c2cce60a5a807424f71d3e
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
+        'liyunfang\\contextmenu\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/liyunfang/yii2-contextmenu',
+        ),
+        'kartik\\plugins\\strengthmeter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/strength-meter',
+        ),
         'kartik\\plugins\\fileinput\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/bootstrap-fileinput',
+        ),
+        'kartik\\password\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-password',
         ),
         'kartik\\growl\\' => 
         array (

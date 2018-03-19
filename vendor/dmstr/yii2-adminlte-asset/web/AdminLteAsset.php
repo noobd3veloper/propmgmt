@@ -36,7 +36,6 @@ class AdminLteAsset extends BaseAdminLteAsset
     public function init()
     {
         // Append skin color file if specified
-        
         if ($this->skin) {
             if (('_all-skins' !== $this->skin) && (strpos($this->skin, 'skin-') !== 0)) {
                 throw new Exception('Invalid skin specified');

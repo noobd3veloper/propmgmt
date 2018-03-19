@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'userSurname',
             //'userResetToken',
             //'companyName',
-            //'startdate',
+            'startdate',
             //'duration',
             //'createdBy',
             //'createdDate',

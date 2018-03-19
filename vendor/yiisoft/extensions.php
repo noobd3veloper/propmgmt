@@ -75,6 +75,42 @@ return array (
       '@kartik/growl' => $vendorDir . '/kartik-v/yii2-widget-growl',
     ),
   ),
+  'yiisoft/yii2-jui' => 
+  array (
+    'name' => 'yiisoft/yii2-jui',
+    'version' => '2.0.7.0',
+    'alias' => 
+    array (
+      '@yii/jui' => $vendorDir . '/yiisoft/yii2-jui',
+    ),
+  ),
+  'kartik-v/yii2-widget-fileinput' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-fileinput',
+    'version' => '1.0.6.0',
+    'alias' => 
+    array (
+      '@kartik/file' => $vendorDir . '/kartik-v/yii2-widget-fileinput',
+    ),
+  ),
+  'yiisoft/yii2-imagine' => 
+  array (
+    'name' => 'yiisoft/yii2-imagine',
+    'version' => '2.1.1.0',
+    'alias' => 
+    array (
+      '@yii/imagine' => $vendorDir . '/yiisoft/yii2-imagine/src',
+    ),
+  ),
+  'liyunfang/yii2-contextmenu' => 
+  array (
+    'name' => 'liyunfang/yii2-contextmenu',
+    'version' => '1.0.5.0',
+    'alias' => 
+    array (
+      '@liyunfang/contextmenu' => $vendorDir . '/liyunfang/yii2-contextmenu',
+    ),
+  ),
   'rmrevin/yii2-fontawesome' => 
   array (
     'name' => 'rmrevin/yii2-fontawesome',
@@ -102,31 +138,13 @@ return array (
       '@dmstr' => $vendorDir . '/dmstr/yii2-adminlte-asset',
     ),
   ),
-  'yiisoft/yii2-jui' => 
+  'kartik-v/yii2-password' => 
   array (
-    'name' => 'yiisoft/yii2-jui',
-    'version' => '2.0.7.0',
+    'name' => 'kartik-v/yii2-password',
+    'version' => '9999999-dev',
     'alias' => 
     array (
-      '@yii/jui' => $vendorDir . '/yiisoft/yii2-jui',
-    ),
-  ),
-  'kartik-v/yii2-widget-fileinput' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-fileinput',
-    'version' => '1.0.6.0',
-    'alias' => 
-    array (
-      '@kartik/file' => $vendorDir . '/kartik-v/yii2-widget-fileinput',
-    ),
-  ),
-  'yiisoft/yii2-imagine' => 
-  array (
-    'name' => 'yiisoft/yii2-imagine',
-    'version' => '2.1.1.0',
-    'alias' => 
-    array (
-      '@yii/imagine' => $vendorDir . '/yiisoft/yii2-imagine/src',
+      '@kartik/password' => $vendorDir . '/kartik-v/yii2-password',
     ),
   ),
 );

@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\User;
+use app\models\ChangePasswordForm;
 use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -24,30 +25,30 @@ class UserController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'changePassword' => ['POST'],
                 ],
             ],
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
-                'only' => ['index','create','update','view','delete'],
                 'rules' => [
-                    // allow authenticated users
-                    [
-                        'actions' => ['index', 'create', 'update', 'delete'],
-                        'allow' => Yii::$app->user->identity->roleID == 1,
-                    ],
                     [
                         'actions' => ['view'],
                         'allow' => true,
-                        'roles'=>['@']
+                        'matchCallback' => function ($rule, $action) {
+                            $model = $this->findModel(Yii::$app->request->get('id'));
+                            return Yii::$app->user->getIdentity()->id == $model->userID;
+                        }
                     ],
-                    // allow authenticated users
                     [
-                        'allow' => false, // Do not have access
-                        'roles'=>['?'], // Guests '?'
+                        'allow' => true,
+                        'actions' => ['update', 'delete','create','index'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->getIdentity()->roleID == 1;
+                        }
                     ],
-                    
                 ],
-            ],
+                
+            ]
         ];
     }
 
@@ -88,13 +89,44 @@ class UserController extends Controller
     {
         $model = new User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->userID]);
+        if ($model->load(Yii::$app->request->post())) {
+			$model->createdBy = Yii::$app->user->getIdentity()->id;
+            $model->createdDate = time();
+            $model->userPassword = $model->hashPassword($model->userSurname);
+			if($model->save()) {
+                //return $this->redirect(['view', 'id' => $model->id]);
+                Yii::$app->session->setFlash('success', 'Successfully Added');
+				return $this->redirect(['index']);
+			} else {
+				print_r($model->errors);
+			}
+        } else {
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionChangepassword()
+    {
+        $id =Yii::$app->user->getIdentity()->id;
+ 
+        try {
+            $model = new ChangePasswordForm($id);
+        } catch (InvalidParamException $e) {
+            throw new \yii\web\BadRequestHttpException($e->getMessage());
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate() && $model->changePassword()) {
+                Yii::$app->session->setFlash('success', 'Password Changed!');
+            }
+        }else{
+            return $this->render('changePassword', [
+                'model' => $model,
+            ]);
+        }
     }
 
     /**
@@ -116,6 +148,8 @@ class UserController extends Controller
             'model' => $model,
         ]);
     }
+
+    
 
     /**
      * Deletes an existing User model.
