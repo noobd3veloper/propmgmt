@@ -33,22 +33,22 @@ use yii\helpers\Html;
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
-                    ['label' => 'Home', 'url' => ['/site/index']],
+                    ['label' => 'Home', 'url' => ['/site/index'], 'icon' => 'home'],
                     ['label' => 'View',  
-                     'icon' => 'share',
+                     'icon' => 'street-view',
                      'url' => '#', 
                      'visible'=>!Yii::$app->user->isGuest,
                      'items' => [
-                        ['label' => 'Tenant', 'icon' => ' fa-user', 'url' => ['/tenant'],],
+                        ['label' => 'Tenant', 'icon' => ' fa-universal-access', 'url' => ['/tenant'],],
                         ],
                     ],
                     ['label' => 'Admin',  
-                     'icon' => 'share',
+                     'icon' => 'drivers-license',
                      'url' => '#', 
                      'visible'=> (!Yii::$app->user->isGuest && Yii::$app->user->getIdentity()->roleID==1) ? true : false,
                      'items' => [
                             ['label' => 'User', 'icon' => ' fa-user', 'url' => ['/user'],],
-                            ['label' => 'Role', 'icon' => ' fa-user', 'url' => ['/role'],],
+                            ['label' => 'Role', 'icon' => ' fa-registered', 'url' => ['/role'],],
                         ],
                     ],
                     //['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
@@ -78,12 +78,13 @@ use yii\helpers\Html;
                     //         ],
                     //     ],
                     // ],
-                    ['label' => 'About', 'url' => ['/site/about']],
+                    ['label' => 'About', 'url' => ['/site/about'], 'icon' => 'info-circle'],
+                    ['label' => 'Contact Us', 'url' => ['/site/contact'], 'icon' => 'phone-square'],
                     Yii::$app->user->isGuest ? (
-                        ['label' => 'Login', 'icon' => 'fa fa-unlock-alt', 'url' => ['/site/login']]
+                        ['label' => 'Login', 'icon' => 'lock', 'url' => ['/site/login']]
                     ) : (
                         ['label' => 'Logout(' . Yii::$app->user->identity->username . ')',
-                            'template' => '<a href="{url}" data-method="post"><i class="fa fa-lock"></i>  <span>{label}</span></a>',
+                            'template' => '<a href="{url}" data-method="post"><i class="fa fa-power-off"></i>  <span>{label}</span></a>',
                             'url' => ['/site/logout']]
                     )
                 ],

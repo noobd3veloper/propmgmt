@@ -8,26 +8,44 @@ use kartik\password\PasswordInput;
  
 $this->title = 'Change Password';
 ?>
-<div class="user-changePassword">
- 
-    <?php $form = ActiveForm::begin(); ?>
- 
-        <?= $form->field($model, 'password')->widget(PasswordInput::classname(), [
-    'pluginOptions' => [
-        'showMeter' => true,
-        'toggleMask' => false
-    ]
-]); ?>
-        <?= $form->field($model, 'confirm_password')->widget(PasswordInput::classname(), [
-    'pluginOptions' => [
-        'showMeter' => true,
-        'toggleMask' => false
-    ]
-]); ?>
- 
-        <div class="form-group">
-            <?= Html::submitButton('Change', ['class' => 'btn btn-primary']) ?>
-        </div>
-    <?php ActiveForm::end(); ?>
- 
+
+<div class="login-box">
+    <div class="login-logo">
+        <a href="#"><b>ReNt</b>Info</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">Change your password</p>
+            <div class="user-changePassword">
+            
+                <?php $form = ActiveForm::begin(); ?>
+            
+                    <?= $form->field($model, 'password')->widget(PasswordInput::classname(), [
+                'pluginOptions' => [
+                    'showMeter' => true,
+                    'toggleMask' => false
+                ]
+            ]); ?>
+                    <?= $form->field($model, 'confirm_password')->widget(PasswordInput::classname(), [
+                'pluginOptions' => [
+                    'showMeter' => true,
+                    'toggleMask' => false
+                ]
+            ]); ?>
+            
+            <div class="row">
+                <div class="col-xs-8">
+                    
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-4">
+                    <?= Html::submitButton('Change', ['class' => 'btn btn-primary btn-block btn-flat']) ?>
+                    
+                </div>
+                <!-- /.col -->
+            </div>
+                <?php ActiveForm::end(); ?>
+            
+            </div>
+    </div>
 </div>

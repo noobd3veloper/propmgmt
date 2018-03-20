@@ -236,13 +236,14 @@ echo AlertBlock::widget([
                 <?php if(!Yii::$app->user->isGuest) : ?>
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+                            
+                             <img src="<?= Yii::$app->request->baseUrl ?> /img/default-160x160.jpg" class="user-image" alt="User Image"/> 
                             <span class="hidden-xs"><?= User::findIdentity(Yii::$app->user->getIdentity()->id)->getFullname()?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
+                                <img src="<?= Yii::$app->request->baseUrl ?> /img/default-160x160.jpg" class="img-circle"
                                     alt="User Image"/>
 
                                 <p>
@@ -293,9 +294,9 @@ echo AlertBlock::widget([
                     </li>
                 <?php endif; ?>                 
                 <!-- User Account: style can be found in dropdown.less -->
-                <li>
+                <!-- <li>
                     <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </nav>

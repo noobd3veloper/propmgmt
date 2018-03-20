@@ -89,7 +89,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Tenant', 'url' => ['tenant/view', 
   
      echo $form->field($attachmentModel, 'attachmentFile')->widget(FileInput::classname(), [
                 'options' => ['accept' => 'image/*'],
-                 'pluginOptions'=>['allowedFileExtensions'=>['jpg','gif','png'],'showUpload' => true,],
+                 'pluginOptions'=>['allowedFileExtensions'=>['jpg','gif','png'],'showUpload' => false,],
             ]);  
 
       echo "<div class='modal-footer'> " .

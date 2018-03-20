@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-//use Zelenin\yii\SemanticUI\widgets\ActiveForm;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */

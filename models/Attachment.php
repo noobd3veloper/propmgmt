@@ -41,7 +41,7 @@ class Attachment extends \yii\db\ActiveRecord
             [['attachmentName'], 'string', 'max' => 255],
             [['attachmentFile'], 'safe'],
             [['attachmentFile'], 'file', 'extensions'=>'jpg, gif, png'],
-            [['attachmentFile'], 'file', 'maxSize'=>'2000000'],
+            [['attachmentFile'], 'file', 'maxSize'=>'1048576'],
             [['createdBy'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['createdBy' => 'userID']],
             [['historyID'], 'exist', 'skipOnError' => true, 'targetClass' => History::className(), 'targetAttribute' => ['historyID' => 'historyID']],
             [['modifiedBy'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['modifiedBy' => 'userID']],

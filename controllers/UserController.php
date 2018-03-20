@@ -32,12 +32,9 @@ class UserController extends Controller
                 'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['view'],
+                        'actions' => ['changepassword', 'view'],
                         'allow' => true,
-                        'matchCallback' => function ($rule, $action) {
-                            $model = $this->findModel(Yii::$app->request->get('id'));
-                            return Yii::$app->user->getIdentity()->id == $model->userID;
-                        }
+                        'roles' => ['@']
                     ],
                     [
                         'allow' => true,
@@ -73,8 +70,9 @@ class UserController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView()
     {
+        $id =Yii::$app->user->getIdentity()->id;
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
